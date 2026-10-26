@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/devotional_item.dart';
 
 class DevotionalCard extends StatelessWidget {
@@ -93,7 +94,8 @@ class DevotionalCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   height: 1.4,
-                  fontStyle: item.category == 'Verse' || item.category == 'Mantra'
+                  fontStyle:
+                      item.category == 'Verse' || item.category == 'Mantra'
                       ? FontStyle.italic
                       : FontStyle.normal,
                 ),

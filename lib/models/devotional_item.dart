@@ -1,11 +1,4 @@
-enum DevotionalCategory {
-  verse,
-  aarti,
-  mantra,
-  chalisa,
-  stotram,
-  festival,
-}
+enum DevotionalCategory { verse, aarti, mantra, chalisa, stotram, festival }
 
 class DevotionalItem {
   final String id;

@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import '../config/app_config.dart';
+
+import '../l10n/app_localizations.dart';
 import '../screens/bhakti/bhakti_screen.dart';
 import '../screens/festivals/festivals_screen.dart';
 import '../screens/more/more_screen.dart';
 import '../screens/saved/saved_screen.dart';
 import '../screens/today/today_screen.dart';
 import '../services/devotional_service.dart';
+import '../services/locale_service.dart';
 import '../services/theme_service.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   final ThemeService themeService;
+  final LocaleService localeService;
   final DevotionalService devotionalService;
 
   const MainNavigationScreen({
     super.key,
     required this.themeService,
+    required this.localeService,
     required this.devotionalService,
   });
 
@@ -35,7 +39,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       BhaktiScreen(devotionalService: widget.devotionalService),
       FestivalsScreen(devotionalService: widget.devotionalService),
       SavedScreen(devotionalService: widget.devotionalService),
-      MoreScreen(themeService: widget.themeService),
+      MoreScreen(
+        themeService: widget.themeService,
+        localeService: widget.localeService,
+      ),
     ];
   }
 
@@ -47,9 +54,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppConfig.appName),
+        title: Text(l10n.appName),
         actions: [
           IconButton(
             icon: Icon(
@@ -57,43 +66,40 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   ? Icons.light_mode
                   : Icons.dark_mode_outlined,
             ),
-            tooltip: 'Toggle Theme',
+            tooltip: l10n.toggleTheme,
             onPressed: () => widget.themeService.toggleTheme(),
           ),
         ],
       ),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _screens),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onItemTapped,
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.wb_sunny_outlined),
-            selectedIcon: Icon(Icons.wb_sunny),
-            label: AppConfig.navToday,
+            icon: const Icon(Icons.wb_sunny_outlined),
+            selectedIcon: const Icon(Icons.wb_sunny),
+            label: l10n.navToday,
           ),
           NavigationDestination(
-            icon: Icon(Icons.auto_awesome_outlined),
-            selectedIcon: Icon(Icons.auto_awesome),
-            label: AppConfig.navBhakti,
+            icon: const Icon(Icons.auto_awesome_outlined),
+            selectedIcon: const Icon(Icons.auto_awesome),
+            label: l10n.navBhakti,
           ),
           NavigationDestination(
-            icon: Icon(Icons.event_note_outlined),
-            selectedIcon: Icon(Icons.event_note),
-            label: AppConfig.navFestivals,
+            icon: const Icon(Icons.event_note_outlined),
+            selectedIcon: const Icon(Icons.event_note),
+            label: l10n.navFestivals,
           ),
           NavigationDestination(
-            icon: Icon(Icons.bookmark_outline),
-            selectedIcon: Icon(Icons.bookmark),
-            label: AppConfig.navSaved,
+            icon: const Icon(Icons.bookmark_outline),
+            selectedIcon: const Icon(Icons.bookmark),
+            label: l10n.navSaved,
           ),
           NavigationDestination(
-            icon: Icon(Icons.grid_view_outlined),
-            selectedIcon: Icon(Icons.grid_view),
-            label: AppConfig.navMore,
+            icon: const Icon(Icons.grid_view_outlined),
+            selectedIcon: const Icon(Icons.grid_view),
+            label: l10n.navMore,
           ),
         ],
       ),

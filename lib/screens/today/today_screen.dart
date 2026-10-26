@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../l10n/app_localizations.dart';
 import '../../services/devotional_service.dart';
 import '../../widgets/devotional_card.dart';
 import '../../widgets/section_header.dart';
@@ -6,15 +8,13 @@ import '../../widgets/section_header.dart';
 class TodayScreen extends StatelessWidget {
   final DevotionalService devotionalService;
 
-  const TodayScreen({
-    super.key,
-    required this.devotionalService,
-  });
+  const TodayScreen({super.key, required this.devotionalService});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     final panchang = devotionalService.getTodayPanchang();
     final verseOfTheDay = devotionalService.getVerseOfTheDay();
 
@@ -33,23 +33,20 @@ class TodayScreen extends StatelessWidget {
                   color: colorScheme.primaryContainer,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.wb_sunny_rounded,
-                  color: colorScheme.primary,
-                ),
+                child: Icon(Icons.wb_sunny_rounded, color: colorScheme.primary),
               ),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Subho Prabhat',
+                    l10n.greetingSubhoPrabhat,
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                   Text(
-                    'Sanatan Sathiya',
+                    l10n.appName,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: colorScheme.primary,
@@ -73,7 +70,7 @@ class TodayScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        panchang['day'] ?? 'Aaj Ka Panchang',
+                        l10n.aajKaPanchang,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorScheme.onPrimaryContainer,
@@ -96,13 +93,13 @@ class TodayScreen extends StatelessWidget {
                       _buildPanchangDetail(
                         context,
                         Icons.calendar_month,
-                        'Tithi',
+                        l10n.tithi,
                         panchang['tithi'] ?? '',
                       ),
                       _buildPanchangDetail(
                         context,
                         Icons.star_outline,
-                        'Nakshatra',
+                        l10n.nakshatra,
                         panchang['nakshatra'] ?? '',
                       ),
                     ],
@@ -114,13 +111,13 @@ class TodayScreen extends StatelessWidget {
                       _buildPanchangDetail(
                         context,
                         Icons.wb_twilight,
-                        'Sunrise',
+                        l10n.sunrise,
                         panchang['sunrise'] ?? '',
                       ),
                       _buildPanchangDetail(
                         context,
                         Icons.nights_stay_outlined,
-                        'Sunset',
+                        l10n.sunset,
                         panchang['sunset'] ?? '',
                       ),
                     ],
@@ -133,18 +130,22 @@ class TodayScreen extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Verse of the Day
-          const SectionHeader(
-            title: 'Verse of the Day',
-            subtitle: 'Daily spiritual guidance from sacred scriptures',
+          SectionHeader(
+            title: l10n.verseOfTheDay,
+            subtitle: l10n.verseSubtitle,
           ),
-          DevotionalCard(item: verseOfTheDay),
+          DevotionalCard(
+            item: verseOfTheDay,
+            onBookmarkToggle: () =>
+                devotionalService.toggleBookmark(verseOfTheDay.id),
+          ),
 
           const SizedBox(height: 24),
 
           // Daily Devotional Quick Actions
-          const SectionHeader(
-            title: 'Daily Sadhana',
-            subtitle: 'Recommended daily prayers & chanting',
+          SectionHeader(
+            title: l10n.dailySadhana,
+            subtitle: l10n.dailySadhanaSubtitle,
           ),
           const SizedBox(height: 8),
           Row(
@@ -153,7 +154,7 @@ class TodayScreen extends StatelessWidget {
                 child: _buildActionChip(
                   context,
                   Icons.auto_awesome,
-                  'Morning Aarti',
+                  l10n.morningAarti,
                 ),
               ),
               const SizedBox(width: 8),
@@ -161,7 +162,7 @@ class TodayScreen extends StatelessWidget {
                 child: _buildActionChip(
                   context,
                   Icons.self_improvement,
-                  'Mantra Jaap',
+                  l10n.mantraJaap,
                 ),
               ),
             ],
@@ -205,11 +206,7 @@ class TodayScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionChip(
-    BuildContext context,
-    IconData icon,
-    String label,
-  ) {
+  Widget _buildActionChip(BuildContext context, IconData icon, String label) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_colors.dart';
 
 abstract class AppTheme {
@@ -39,9 +40,7 @@ abstract class AppTheme {
       ),
       cardTheme: CardThemeData(
         elevation: 1,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
       ),
       navigationBarTheme: NavigationBarThemeData(
@@ -55,10 +54,7 @@ abstract class AppTheme {
               color: colorScheme.primary,
             );
           }
-          return TextStyle(
-            fontSize: 12,
-            color: colorScheme.onSurfaceVariant,
-          );
+          return TextStyle(fontSize: 12, color: colorScheme.onSurfaceVariant);
         }),
       ),
     );
@@ -101,9 +97,7 @@ abstract class AppTheme {
       ),
       cardTheme: CardThemeData(
         elevation: 1,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.2),
       ),
       navigationBarTheme: NavigationBarThemeData(
@@ -117,10 +111,7 @@ abstract class AppTheme {
               color: colorScheme.primary,
             );
           }
-          return TextStyle(
-            fontSize: 12,
-            color: colorScheme.onSurfaceVariant,
-          );
+          return TextStyle(fontSize: 12, color: colorScheme.onSurfaceVariant);
         }),
       ),
     );

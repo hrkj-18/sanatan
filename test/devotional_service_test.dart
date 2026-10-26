@@ -37,9 +37,14 @@ void main() {
       expect(festivals.first.category, equals('Festival'));
     });
 
-    test('getSavedItems returns bookmarked devotional items', () {
+    test('getSavedItems returns only bookmarked devotional items', () async {
+      expect(service.getSavedItems(), isEmpty);
+
+      await service.toggleBookmark('b_1');
       final saved = service.getSavedItems();
-      expect(saved.every((item) => item.isSaved), isTrue);
+      expect(saved.length, equals(1));
+      expect(saved.first.id, equals('b_1'));
+      expect(saved.first.isSaved, isTrue);
     });
   });
 }

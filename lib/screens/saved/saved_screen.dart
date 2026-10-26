@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../l10n/app_localizations.dart';
 import '../../services/devotional_service.dart';
 import '../../widgets/devotional_card.dart';
 import '../../widgets/section_header.dart';
@@ -6,15 +8,13 @@ import '../../widgets/section_header.dart';
 class SavedScreen extends StatelessWidget {
   final DevotionalService devotionalService;
 
-  const SavedScreen({
-    super.key,
-    required this.devotionalService,
-  });
+  const SavedScreen({super.key, required this.devotionalService});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     final savedItems = devotionalService.getSavedItems();
 
     return Padding(
@@ -22,10 +22,7 @@ class SavedScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeader(
-            title: 'Saved Prayers',
-            subtitle: 'Your bookmarked verses, aartis and mantras',
-          ),
+          SectionHeader(title: l10n.savedPrayers, subtitle: l10n.savedSubtitle),
           const SizedBox(height: 12),
           Expanded(
             child: savedItems.isEmpty
@@ -36,18 +33,20 @@ class SavedScreen extends StatelessWidget {
                         Icon(
                           Icons.bookmark_outline,
                           size: 48,
-                          color: colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+                          color: colorScheme.onSurfaceVariant.withValues(
+                            alpha: 0.5,
+                          ),
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          'No saved items yet',
+                          l10n.noSavedItems,
                           style: theme.textTheme.titleMedium?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Tap the bookmark icon on any prayer or verse to save it here.',
+                          l10n.noSavedItemsSubtitle,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: colorScheme.onSurfaceVariant,
@@ -59,7 +58,12 @@ class SavedScreen extends StatelessWidget {
                 : ListView.builder(
                     itemCount: savedItems.length,
                     itemBuilder: (context, index) {
-                      return DevotionalCard(item: savedItems[index]);
+                      final item = savedItems[index];
+                      return DevotionalCard(
+                        item: item,
+                        onBookmarkToggle: () =>
+                            devotionalService.toggleBookmark(item.id),
+                      );
                     },
                   ),
           ),

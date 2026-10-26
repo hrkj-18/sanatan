@@ -1,0 +1,66 @@
+{
+  "@@locale": "en",
+  "appName": "Sanatan Sathiya",
+  "@appName": {
+    "description": "The title of the application"
+  },
+  "appTagline": "Your Daily Hindu Devotional Companion",
+  "@appTagline": {
+    "description": "The tagline of the application"
+  },
+  "navToday": "Today",
+  "navBhakti": "Bhakti",
+  "navFestivals": "Festivals",
+  "navSaved": "Saved",
+  "navMore": "More",
+  "greetingSubhoPrabhat": "Subho Prabhat",
+  "aajKaPanchang": "Aaj Ka Panchang",
+  "tithi": "Tithi",
+  "nakshatra": "Nakshatra",
+  "sunrise": "Sunrise",
+  "sunset": "Sunset",
+  "verseOfTheDay": "Verse of the Day",
+  "verseSubtitle": "Daily spiritual guidance from sacred scriptures",
+  "dailySadhana": "Daily Sadhana",
+  "dailySadhanaSubtitle": "Recommended daily prayers & chanting",
+  "morningAarti": "Morning Aarti",
+  "mantraJaap": "Mantra Jaap",
+  "bhaktiSangrah": "Bhakti Sangrah",
+  "bhaktiSubtitle": "Sacred Aartis, Mantras, Chalisas and Stotrams",
+  "categoryAll": "All",
+  "categoryAarti": "Aarti",
+  "categoryMantra": "Mantra",
+  "categoryChalisa": "Chalisa",
+  "categoryStotram": "Stotram",
+  "noContentInCategory": "No content available in this category.",
+  "festivalsAndVrats": "Festivals & Vrats",
+  "festivalsSubtitle": "Upcoming Hindu festivals, tithis and rituals",
+  "savedPrayers": "Saved Prayers",
+  "savedSubtitle": "Your bookmarked verses, aartis and mantras",
+  "noSavedItems": "No saved items yet",
+  "noSavedItemsSubtitle": "Tap the bookmark icon on any prayer or verse to save it here.",
+  "moreAndSettings": "More & Settings",
+  "moreSubtitle": "Customize your devotional experience",
+  "appearanceTheme": "Appearance Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "devotionalLanguage": "Devotional Language",
+  "selectLanguage": "Select Language",
+  "systemDefault": "System Default",
+  "english": "English",
+  "hindi": "हिन्दी (Hindi)",
+  "marathi": "मराठी (Marathi)",
+  "textSize": "Text Size",
+  "textSizeMedium": "Medium",
+  "appVersionLabel": "Version {version}",
+  "@appVersionLabel": {
+    "description": "App version label",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "toggleTheme": "Toggle Theme"
+}
