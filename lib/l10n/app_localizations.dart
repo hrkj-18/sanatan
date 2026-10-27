@@ -154,6 +154,12 @@ abstract class AppLocalizations {
   /// **'Aaj Ka Panchang'**
   String get aajKaPanchang;
 
+  /// No description provided for @sampleData.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample Data'**
+  String get sampleData;
+
   /// No description provided for @tithi.
   ///
   /// In en, this message translates to:

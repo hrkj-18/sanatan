@@ -6,6 +6,7 @@ import 'l10n/app_localizations.dart';
 import 'navigation/main_navigation_screen.dart';
 import 'services/devotional_service.dart';
 import 'services/locale_service.dart';
+import 'services/panchang_service.dart';
 import 'services/theme_service.dart';
 import 'theme/app_theme.dart';
 
@@ -17,8 +18,9 @@ void main() async {
 
 class SanatanSathiyaApp extends StatefulWidget {
   final SharedPreferences? prefs;
+  final PanchangService? panchangService;
 
-  const SanatanSathiyaApp({super.key, this.prefs});
+  const SanatanSathiyaApp({super.key, this.prefs, this.panchangService});
 
   @override
   State<SanatanSathiyaApp> createState() => _SanatanSathiyaAppState();
@@ -28,6 +30,8 @@ class _SanatanSathiyaAppState extends State<SanatanSathiyaApp> {
   late final ThemeService _themeService;
   late final LocaleService _localeService;
   late final DevotionalService _devotionalService;
+  late final PanchangService _panchangService;
+  bool _ownsPanchangService = false;
 
   @override
   void initState() {
@@ -35,6 +39,13 @@ class _SanatanSathiyaAppState extends State<SanatanSathiyaApp> {
     _themeService = ThemeService(prefs: widget.prefs);
     _localeService = LocaleService(prefs: widget.prefs);
     _devotionalService = DevotionalService(prefs: widget.prefs);
+    if (widget.panchangService != null) {
+      _panchangService = widget.panchangService!;
+      _ownsPanchangService = false;
+    } else {
+      _panchangService = MockPanchangService();
+      _ownsPanchangService = true;
+    }
   }
 
   @override
@@ -42,6 +53,9 @@ class _SanatanSathiyaAppState extends State<SanatanSathiyaApp> {
     _themeService.dispose();
     _localeService.dispose();
     _devotionalService.dispose();
+    if (_ownsPanchangService) {
+      _panchangService.dispose();
+    }
     super.dispose();
   }
 
@@ -52,6 +66,7 @@ class _SanatanSathiyaAppState extends State<SanatanSathiyaApp> {
         _themeService,
         _localeService,
         _devotionalService,
+        _panchangService,
       ]),
       builder: (context, child) {
         return MaterialApp(
@@ -73,6 +88,7 @@ class _SanatanSathiyaAppState extends State<SanatanSathiyaApp> {
             themeService: _themeService,
             localeService: _localeService,
             devotionalService: _devotionalService,
+            panchangService: _panchangService,
           ),
         );
       },

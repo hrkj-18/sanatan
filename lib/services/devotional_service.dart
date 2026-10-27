@@ -65,17 +65,6 @@ class DevotionalService extends ChangeNotifier {
     return raw.copyWith(isSaved: isBookmarked(raw.id));
   }
 
-  Map<String, String> getTodayPanchang() {
-    return {
-      'tithi': 'Shukla Paksha Ekadashi',
-      'nakshatra': 'Rohini',
-      'samvat': 'Vikram Samvat 2081',
-      'day': 'Aaj Ka Panchang',
-      'sunrise': '06:28 AM',
-      'sunset': '06:12 PM',
-    };
-  }
-
   List<DevotionalItem> getBhaktiItems() {
     final rawList = const [
       DevotionalItem(

@@ -2,20 +2,26 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../services/devotional_service.dart';
+import '../../services/panchang_service.dart';
 import '../../widgets/devotional_card.dart';
 import '../../widgets/section_header.dart';
 
 class TodayScreen extends StatelessWidget {
   final DevotionalService devotionalService;
+  final PanchangService panchangService;
 
-  const TodayScreen({super.key, required this.devotionalService});
+  const TodayScreen({
+    super.key,
+    required this.devotionalService,
+    required this.panchangService,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
-    final panchang = devotionalService.getTodayPanchang();
+    final panchang = panchangService.getPanchangForDate(DateTime.now());
     final verseOfTheDay = devotionalService.getVerseOfTheDay();
 
     return SingleChildScrollView(
@@ -69,16 +75,40 @@ class TodayScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        l10n.aajKaPanchang,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.onPrimaryContainer,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            l10n.aajKaPanchang,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.onPrimaryContainer,
+                            ),
+                          ),
+                          if (panchang.isMock) ...[
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colorScheme.secondaryContainer,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                l10n.sampleData,
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: colorScheme.onSecondaryContainer,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                       Chip(
                         label: Text(
-                          panchang['samvat'] ?? '',
+                          panchang.samvat,
                           style: const TextStyle(fontSize: 11),
                         ),
                         visualDensity: VisualDensity.compact,
@@ -94,13 +124,13 @@ class TodayScreen extends StatelessWidget {
                         context,
                         Icons.calendar_month,
                         l10n.tithi,
-                        panchang['tithi'] ?? '',
+                        panchang.tithi,
                       ),
                       _buildPanchangDetail(
                         context,
                         Icons.star_outline,
                         l10n.nakshatra,
-                        panchang['nakshatra'] ?? '',
+                        panchang.nakshatra,
                       ),
                     ],
                   ),
@@ -112,13 +142,13 @@ class TodayScreen extends StatelessWidget {
                         context,
                         Icons.wb_twilight,
                         l10n.sunrise,
-                        panchang['sunrise'] ?? '',
+                        panchang.sunrise,
                       ),
                       _buildPanchangDetail(
                         context,
                         Icons.nights_stay_outlined,
                         l10n.sunset,
-                        panchang['sunset'] ?? '',
+                        panchang.sunset,
                       ),
                     ],
                   ),

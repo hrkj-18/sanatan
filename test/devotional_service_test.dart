@@ -16,13 +16,6 @@ void main() {
       expect(verse.category, equals('Verse'));
     });
 
-    test('getTodayPanchang returns tithi and nakshatra details', () {
-      final panchang = service.getTodayPanchang();
-      expect(panchang.containsKey('tithi'), isTrue);
-      expect(panchang.containsKey('nakshatra'), isTrue);
-      expect(panchang['tithi'], isNotEmpty);
-    });
-
     test('getBhaktiItems returns list of devotional items', () {
       final items = service.getBhaktiItems();
       expect(items, isNotEmpty);

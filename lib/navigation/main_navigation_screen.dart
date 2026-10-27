@@ -8,18 +8,21 @@ import '../screens/saved/saved_screen.dart';
 import '../screens/today/today_screen.dart';
 import '../services/devotional_service.dart';
 import '../services/locale_service.dart';
+import '../services/panchang_service.dart';
 import '../services/theme_service.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   final ThemeService themeService;
   final LocaleService localeService;
   final DevotionalService devotionalService;
+  final PanchangService panchangService;
 
   const MainNavigationScreen({
     super.key,
     required this.themeService,
     required this.localeService,
     required this.devotionalService,
+    required this.panchangService,
   });
 
   @override
@@ -35,7 +38,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   void initState() {
     super.initState();
     _screens = [
-      TodayScreen(devotionalService: widget.devotionalService),
+      TodayScreen(
+        devotionalService: widget.devotionalService,
+        panchangService: widget.panchangService,
+      ),
       BhaktiScreen(devotionalService: widget.devotionalService),
       FestivalsScreen(devotionalService: widget.devotionalService),
       SavedScreen(devotionalService: widget.devotionalService),

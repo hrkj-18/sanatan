@@ -37,6 +37,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aajKaPanchang => 'आज का पंचांग';
 
   @override
+  String get sampleData => 'नमूना डेटा';
+
+  @override
   String get tithi => 'तिथि';
 
   @override
