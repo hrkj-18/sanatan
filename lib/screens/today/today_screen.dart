@@ -42,23 +42,25 @@ class TodayScreen extends StatelessWidget {
                 child: Icon(Icons.wb_sunny_rounded, color: colorScheme.primary),
               ),
               const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.greetingSubhoPrabhat,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.greetingSubhoPrabhat,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                  Text(
-                    l10n.appName,
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.primary,
+                    Text(
+                      l10n.appName,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: colorScheme.primary,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
@@ -72,10 +74,16 @@ class TodayScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 8,
+                    runSpacing: 8,
                     children: [
-                      Row(
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 8,
+                        runSpacing: 4,
                         children: [
                           Text(
                             l10n.aajKaPanchang,
@@ -84,8 +92,7 @@ class TodayScreen extends StatelessWidget {
                               color: colorScheme.onSurface,
                             ),
                           ),
-                          if (panchang.isMock) ...[
-                            const SizedBox(width: 8),
+                          if (panchang.isMock)
                             Container(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 6,
@@ -108,7 +115,6 @@ class TodayScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          ],
                         ],
                       ),
                       Chip(
@@ -122,40 +128,55 @@ class TodayScreen extends StatelessWidget {
                     ],
                   ),
                   const Divider(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildPanchangDetail(
-                        context,
-                        Icons.calendar_month,
-                        l10n.tithi,
-                        panchang.tithi,
-                      ),
-                      _buildPanchangDetail(
-                        context,
-                        Icons.star_outline,
-                        l10n.nakshatra,
-                        panchang.nakshatra,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildPanchangDetail(
-                        context,
-                        Icons.wb_twilight,
-                        l10n.sunrise,
-                        panchang.sunrise,
-                      ),
-                      _buildPanchangDetail(
-                        context,
-                        Icons.nights_stay_outlined,
-                        l10n.sunset,
-                        panchang.sunset,
-                      ),
-                    ],
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final itemWidth = constraints.maxWidth > 300
+                          ? (constraints.maxWidth - 12) / 2
+                          : constraints.maxWidth;
+
+                      return Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: [
+                          SizedBox(
+                            width: itemWidth,
+                            child: _buildPanchangDetail(
+                              context,
+                              Icons.calendar_month,
+                              l10n.tithi,
+                              panchang.tithi,
+                            ),
+                          ),
+                          SizedBox(
+                            width: itemWidth,
+                            child: _buildPanchangDetail(
+                              context,
+                              Icons.star_outline,
+                              l10n.nakshatra,
+                              panchang.nakshatra,
+                            ),
+                          ),
+                          SizedBox(
+                            width: itemWidth,
+                            child: _buildPanchangDetail(
+                              context,
+                              Icons.wb_twilight,
+                              l10n.sunrise,
+                              panchang.sunrise,
+                            ),
+                          ),
+                          SizedBox(
+                            width: itemWidth,
+                            child: _buildPanchangDetail(
+                              context,
+                              Icons.nights_stay_outlined,
+                              l10n.sunset,
+                              panchang.sunset,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),
@@ -183,24 +204,35 @@ class TodayScreen extends StatelessWidget {
             subtitle: l10n.dailySadhanaSubtitle,
           ),
           const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: _buildActionChip(
-                  context,
-                  Icons.auto_awesome,
-                  l10n.morningAarti,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _buildActionChip(
-                  context,
-                  Icons.self_improvement,
-                  l10n.mantraJaap,
-                ),
-              ),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final itemWidth = constraints.maxWidth > 280
+                  ? (constraints.maxWidth - 8) / 2
+                  : constraints.maxWidth;
+
+              return Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  SizedBox(
+                    width: itemWidth,
+                    child: _buildActionChip(
+                      context,
+                      Icons.auto_awesome,
+                      l10n.morningAarti,
+                    ),
+                  ),
+                  SizedBox(
+                    width: itemWidth,
+                    child: _buildActionChip(
+                      context,
+                      Icons.self_improvement,
+                      l10n.mantraJaap,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),
@@ -220,22 +252,25 @@ class TodayScreen extends StatelessWidget {
       children: [
         Icon(icon, size: 18, color: colorScheme.primary),
         const SizedBox(width: 6),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: colorScheme.onSurfaceVariant,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-            Text(
-              value,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
+              Text(
+                value,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
@@ -246,7 +281,7 @@ class TodayScreen extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       decoration: BoxDecoration(
         color: colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(12),
@@ -256,12 +291,15 @@ class TodayScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, size: 20, color: colorScheme.primary),
-          const SizedBox(width: 8),
-          Text(
-            label,
-            style: theme.textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: colorScheme.onSurface,
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(
+              label,
+              style: theme.textTheme.labelLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: colorScheme.onSurface,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

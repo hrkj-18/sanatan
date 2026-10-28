@@ -65,7 +65,8 @@ void main() {
       await tester.tap(find.text('More'));
       await tester.pumpAndSettle();
 
-      // Tap on 'हिन्दी' in language selector
+      // Ensure Hindi button is visible before tapping
+      await tester.ensureVisible(find.text('हिन्दी'));
       await tester.tap(find.text('हिन्दी'));
       await tester.pumpAndSettle();
 
@@ -73,7 +74,8 @@ void main() {
       expect(find.text('दृश्य थीम'), findsOneWidget);
       expect(find.text('भक्ति भाषा'), findsOneWidget);
 
-      // Tap on 'मराठी'
+      // Ensure Marathi button is visible before tapping
+      await tester.ensureVisible(find.text('मराठी'));
       await tester.tap(find.text('मराठी'));
       await tester.pumpAndSettle();
 

@@ -46,10 +46,12 @@ class MoreScreen extends StatelessWidget {
                     children: [
                       Icon(Icons.palette_outlined, color: colorScheme.primary),
                       const SizedBox(width: 12),
-                      Text(
-                        l10n.appearanceTheme,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Text(
+                          l10n.appearanceTheme,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
@@ -73,10 +75,12 @@ class MoreScreen extends StatelessWidget {
                     children: [
                       Icon(Icons.language, color: colorScheme.primary),
                       const SizedBox(width: 12),
-                      Text(
-                        l10n.devotionalLanguage,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Text(
+                          l10n.devotionalLanguage,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
