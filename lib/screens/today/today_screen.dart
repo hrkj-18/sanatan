@@ -66,7 +66,7 @@ class TodayScreen extends StatelessWidget {
 
           // Panchang Summary Card
           Card(
-            color: colorScheme.primaryContainer.withValues(alpha: 0.4),
+            color: colorScheme.primaryContainer,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -81,7 +81,7 @@ class TodayScreen extends StatelessWidget {
                             l10n.aajKaPanchang,
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: colorScheme.onPrimaryContainer,
+                              color: colorScheme.onSurface,
                             ),
                           ),
                           if (panchang.isMock) ...[
@@ -92,14 +92,19 @@ class TodayScreen extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: colorScheme.secondaryContainer,
+                                color: colorScheme.surface,
                                 borderRadius: BorderRadius.circular(4),
+                                border: Border.all(
+                                  color: colorScheme.outline,
+                                  width: 0.5,
+                                ),
                               ),
                               child: Text(
                                 l10n.sampleData,
                                 style: theme.textTheme.labelSmall?.copyWith(
-                                  color: colorScheme.onSecondaryContainer,
+                                  color: colorScheme.onPrimaryContainer,
                                   fontSize: 10,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -243,11 +248,9 @@ class TodayScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        color: colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: colorScheme.outline),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -258,6 +261,7 @@ class TodayScreen extends StatelessWidget {
             label,
             style: theme.textTheme.labelLarge?.copyWith(
               fontWeight: FontWeight.w600,
+              color: colorScheme.onSurface,
             ),
           ),
         ],

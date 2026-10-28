@@ -1,49 +1,29 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
-  // Light Theme Colors (Warm Saffron / Sandalwood)
-  static const Color lightPrimary = Color(0xFFD96B27);
-  static const Color lightOnPrimary = Color(0xFFFFFFFF);
-  static const Color lightPrimaryContainer = Color(0xFFFFDCC9);
-  static const Color lightOnPrimaryContainer = Color(0xFF351500);
+  // Brand Color
+  static const Color brandPrimary = Color(0xFFF16334);
+  static const Color onPrimary = Color(0xFF202020);
 
-  static const Color lightSecondary = Color(0xFF765849);
-  static const Color lightOnSecondary = Color(0xFFFFFFFF);
-  static const Color lightSecondaryContainer = Color(0xFFFFDCCB);
-  static const Color lightOnSecondaryContainer = Color(0xFF2B160B);
+  // Accessible Text Color on Light Subtle Containers / White (7.82:1 on #FFFFFF, 7.38:1 on #FFF1EC)
+  static const Color lightOnPrimaryContainer = Color(0xFF8F3000);
 
-  static const Color lightTertiary = Color(0xFF656031);
-  static const Color lightOnTertiary = Color(0xFFFFFFFF);
-  static const Color lightTertiaryContainer = Color(0xFFECE5AA);
-  static const Color lightOnTertiaryContainer = Color(0xFF1F1C00);
+  // Accessible Text Color on Dark Subtle Containers (8.00:1 on #292321)
+  static const Color darkOnPrimaryContainer = Color(0xFFFFB68F);
 
-  static const Color lightSurface = Color(0xFFFFFBF7);
-  static const Color lightOnSurface = Color(0xFF201A17);
-  static const Color lightSurfaceContainerHighest = Color(0xFFF4DFD4);
-  static const Color lightOnSurfaceVariant = Color(0xFF52443C);
+  // Light Theme Colors
+  static const Color lightBackground = Color(0xFFFFFFFF);
+  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightSubtleOrange = Color(0xFFFFF1EC);
+  static const Color lightPrimaryText = Color(0xFF202020);
+  static const Color lightSecondaryText = Color(0xFF666666);
+  static const Color lightBorder = Color(0xFFEEEEEE);
 
-  // Dark Theme Colors (Sunset Saffron / Deep Warm Slate)
-  static const Color darkPrimary = Color(0xFFFFB68F);
-  static const Color darkOnPrimary = Color(0xFF522300);
-  static const Color darkPrimaryContainer = Color(0xFF743707);
-  static const Color darkOnPrimaryContainer = Color(0xFFFFDCC9);
-
-  static const Color darkSecondary = Color(0xFFE6BEAC);
-  static const Color darkOnSecondary = Color(0xFF432B1E);
-  static const Color darkSecondaryContainer = Color(0xFF5C4133);
-  static const Color darkOnSecondaryContainer = Color(0xFFFFDCCB);
-
-  static const Color darkTertiary = Color(0xFFCFC990);
-  static const Color darkOnTertiary = Color(0xFF353107);
-  static const Color darkTertiaryContainer = Color(0xFF4C481B);
-  static const Color darkOnTertiaryContainer = Color(0xFFECE5AA);
-
-  static const Color darkSurface = Color(0xFF1A120C);
-  static const Color darkOnSurface = Color(0xFFECE0DA);
-  static const Color darkSurfaceContainerHighest = Color(0xFF52443C);
-  static const Color darkOnSurfaceVariant = Color(0xFFD7C3B8);
-
-  // Accent Colors
-  static const Color saffronGold = Color(0xFFFFB300);
-  static const Color deepRed = Color(0xFFB71C1C);
+  // Dark Theme Colors
+  static const Color darkBackground = Color(0xFF171717);
+  static const Color darkSurface = Color(0xFF222222);
+  static const Color darkSubtleOrange = Color(0xFF292321);
+  static const Color darkPrimaryText = Color(0xFFFFFFFF);
+  static const Color darkSecondaryText = Color(0xFFBDBDBD);
+  static const Color darkBorder = Color(0xFF363636);
 }

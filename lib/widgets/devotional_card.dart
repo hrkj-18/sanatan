@@ -55,7 +55,7 @@ class DevotionalCard extends StatelessWidget {
                     Text(
                       item.date!,
                       style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorScheme.primary,
+                        color: colorScheme.onPrimaryContainer,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -76,6 +76,7 @@ class DevotionalCard extends StatelessWidget {
                 item.title,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: colorScheme.onSurface,
                 ),
               ),
               if (item.subtitle.isNotEmpty) ...[
@@ -94,6 +95,7 @@ class DevotionalCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   height: 1.4,
+                  color: colorScheme.onSurface,
                   fontStyle:
                       item.category == 'Verse' || item.category == 'Mantra'
                       ? FontStyle.italic
